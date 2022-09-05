@@ -5,17 +5,21 @@ import 'package:weather_app/locator.dart';
 import 'package:weather_app/router/router.gr.dart';
 
 void main() {
-  setupLocator();///For Dependency injections
+  setupLocator();
+
+  ///For Dependency injections
   runApp(WeatherApp());
 }
 
 class WeatherApp extends StatelessWidget {
   WeatherApp({Key? key}) : super(key: key);
-  final _appRouter = AppRouter(); ///Init auto-router
+  ///Init auto-router
+  final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(///init bloc provider here to have access in each route
+    ///init bloc provider here to have access in each route
+    return BlocProvider(
       create: (context) => locator<CityWeatherBloc>(),
       child: MaterialApp.router(
         routeInformationParser: _appRouter.defaultRouteParser(),
