@@ -6,8 +6,8 @@ part of 'city_weather.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CityWeatherModel _$CityWeatherModelFromJson(Map<String, dynamic> json) =>
-    CityWeatherModel(
+_$_CityWeatherModel _$$_CityWeatherModelFromJson(Map<String, dynamic> json) =>
+    _$_CityWeatherModel(
       cod: json['cod'] as String?,
       message: json['message'] as int?,
       cnt: json['cnt'] as int?,
@@ -19,11 +19,11 @@ CityWeatherModel _$CityWeatherModelFromJson(Map<String, dynamic> json) =>
           : City.fromJson(json['city'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$CityWeatherModelToJson(CityWeatherModel instance) =>
+Map<String, dynamic> _$$_CityWeatherModelToJson(_$_CityWeatherModel instance) =>
     <String, dynamic>{
       'cod': instance.cod,
       'message': instance.message,
       'cnt': instance.cnt,
-      'list': instance.list,
-      'city': instance.city,
+      'list': instance.list?.map((e) => e.toJson()).toList(),
+      'city': instance.city?.toJson(),
     };

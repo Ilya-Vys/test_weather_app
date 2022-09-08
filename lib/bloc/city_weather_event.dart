@@ -1,12 +1,8 @@
 part of 'city_weather_bloc.dart';
 
-@immutable
-abstract class CityWeatherEvent {}
-
-class LoadCityWeatherEvent extends CityWeatherEvent {
-  final String city;
-
-  LoadCityWeatherEvent(this.city);
+@freezed
+class CityWeatherEvent with _$CityWeatherEvent {
+  const factory CityWeatherEvent.load(String city) = LoadCityWeatherEvent;
+  const factory CityWeatherEvent.clean() = CleanInputtedCityEvent;
 }
 
-class CleanInputtedCityEvent extends CityWeatherEvent {}

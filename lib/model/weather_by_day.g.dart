@@ -6,7 +6,8 @@ part of 'weather_by_day.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-WeatherByDay _$WeatherByDayFromJson(Map<String, dynamic> json) => WeatherByDay(
+_$_WeatherByDay _$$_WeatherByDayFromJson(Map<String, dynamic> json) =>
+    _$_WeatherByDay(
       dt: json['dt'] as int?,
       main: json['main'] == null
           ? null
@@ -28,15 +29,15 @@ WeatherByDay _$WeatherByDayFromJson(Map<String, dynamic> json) => WeatherByDay(
       dtTxt: json['dt_txt'] as String?,
     );
 
-Map<String, dynamic> _$WeatherByDayToJson(WeatherByDay instance) =>
+Map<String, dynamic> _$$_WeatherByDayToJson(_$_WeatherByDay instance) =>
     <String, dynamic>{
       'dt': instance.dt,
-      'main': instance.main,
-      'weather': instance.weather,
-      'clouds': instance.clouds,
-      'wind': instance.wind,
+      'main': instance.main?.toJson(),
+      'weather': instance.weather?.map((e) => e.toJson()).toList(),
+      'clouds': instance.clouds?.toJson(),
+      'wind': instance.wind?.toJson(),
       'visibility': instance.visibility,
       'pop': instance.pop,
-      'sys': instance.sys,
+      'sys': instance.sys?.toJson(),
       'dt_txt': instance.dtTxt,
     };

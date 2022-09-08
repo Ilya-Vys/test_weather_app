@@ -6,7 +6,7 @@ part of 'city.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-City _$CityFromJson(Map<String, dynamic> json) => City(
+_$_City _$$_CityFromJson(Map<String, dynamic> json) => _$_City(
       id: json['id'] as int?,
       name: json['name'] as String?,
       coord: json['coord'] == null
@@ -19,10 +19,10 @@ City _$CityFromJson(Map<String, dynamic> json) => City(
       sunset: json['sunset'] as int?,
     );
 
-Map<String, dynamic> _$CityToJson(City instance) => <String, dynamic>{
+Map<String, dynamic> _$$_CityToJson(_$_City instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'coord': instance.coord,
+      'coord': instance.coord?.toJson(),
       'country': instance.country,
       'population': instance.population,
       'timezone': instance.timezone,

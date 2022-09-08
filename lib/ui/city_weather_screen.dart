@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/bloc/city_weather_bloc.dart';
+import 'package:weather_app/model/weather_by_day.dart';
 import 'package:weather_app/resources/app_strings.dart';
 import 'package:weather_app/router/router.gr.dart';
 import 'package:weather_app/ui/widgets/weather_info_card.dart';
@@ -11,40 +12,31 @@ class CityWeatherScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = context.watch<CityWeatherBloc>().state;
     return Scaffold(
       appBar: AppBar(
         ///To set taken city name to appbar title
-        title: BlocBuilder<CityWeatherBloc, CityWeatherState>(
-          builder: (context, state) {
-            if (state is CityWeatherLoadedState) {
-              return Text(state.cityWeatherModel.city?.name ?? '');
-            } else {
-              return const SizedBox.shrink();
-            }
-          },
-        ),
+        title: state.maybeWhen(
+            orElse: () => const SizedBox.shrink(),
+            loaded: (model) => Text(model.city?.name ?? ''),
+          ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
             context.router.pop();
-            context.read<CityWeatherBloc>().add(CleanInputtedCityEvent());
+            context.read<CityWeatherBloc>().add(CityWeatherEvent.clean());
           },
         ),
         actions: [
           ///If data taken then show icon which open details screen on press
-          BlocBuilder<CityWeatherBloc, CityWeatherState>(
-            builder: (context, state) {
-              if (state is CityWeatherLoadedState) {
-                return IconButton(
-                  icon: const Icon(Icons.details),
-                  onPressed: () => context.router
-                      .push(const CityWeatherByThreeDaysScreenRoute()),
-                );
-              } else {
-                return const SizedBox.shrink();
-              }
-            },
+          state.maybeWhen(
+            orElse: () => const SizedBox.shrink(),
+            loaded: (_) => IconButton(
+              icon: const Icon(Icons.details),
+              onPressed: () => context.router
+                  .push(const CityWeatherByThreeDaysScreenRoute()),
+            ),
           ),
         ],
       ),
@@ -57,7 +49,11 @@ class CityWeatherScreen extends StatelessWidget {
         },
         builder: (context, state) {
           if (state is CityWeatherLoadedState) {
-            return WeatherInfoCard(weatherByDay: state.cityWeatherModel.list!.first);
+            var a = state.cityWeatherModel.list!.first.toJson();
+            var b = WeatherByDay.fromJson(a);
+            print(b);
+            return WeatherInfoCard(
+                weatherByDay: state.cityWeatherModel.list!.first);
           } else if (state is CityWeatherErrorState) {
             return const Center(child: Text(AppStrings.secondScreenErrorTitle));
           } else {

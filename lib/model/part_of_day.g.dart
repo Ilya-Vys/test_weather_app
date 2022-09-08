@@ -6,10 +6,11 @@ part of 'part_of_day.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PartOfDay _$PartOfDayFromJson(Map<String, dynamic> json) => PartOfDay(
+_$_PartOfDay _$$_PartOfDayFromJson(Map<String, dynamic> json) => _$_PartOfDay(
       pod: json['pod'] as String?,
     );
 
-Map<String, dynamic> _$PartOfDayToJson(PartOfDay instance) => <String, dynamic>{
+Map<String, dynamic> _$$_PartOfDayToJson(_$_PartOfDay instance) =>
+    <String, dynamic>{
       'pod': instance.pod,
     };

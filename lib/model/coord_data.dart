@@ -1,15 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'coord_data.freezed.dart';
 part 'coord_data.g.dart';
 
-@JsonSerializable()
-class Coordinates {
-  final double? lon;
-  final double? lat;
-
-  Coordinates({this.lon, this.lat});
+@freezed
+class Coordinates with _$Coordinates {
+  const factory Coordinates({
+    final double? lon,
+    final double? lat,
+  }) = _Coordinates;
 
   factory Coordinates.fromJson(Map<String, dynamic> json) =>
       _$CoordinatesFromJson(json);
-  Map<String, dynamic> toJson() => _$CoordinatesToJson(this);
 }

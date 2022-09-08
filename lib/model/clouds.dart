@@ -1,14 +1,13 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'clouds.freezed.dart';
 part 'clouds.g.dart';
 
-@JsonSerializable()
-class Clouds {
-  final int? all;
+@freezed
+class Clouds with _$Clouds {
+  const factory Clouds({
+    final int? all,
+  }) = _Clouds;
 
-  Clouds({this.all});
-
-  factory Clouds.fromJson(Map<String, dynamic> json) =>
-      _$CloudsFromJson(json);
-  Map<String, dynamic> toJson() => _$CloudsToJson(this);
+  factory Clouds.fromJson(Map<String, dynamic> json) => _$CloudsFromJson(json);
 }

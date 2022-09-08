@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   ///Add load event and push to second screen
   _loadWeather(BuildContext context, String city) {
-    context.read<CityWeatherBloc>().add(LoadCityWeatherEvent(city));
+    context.read<CityWeatherBloc>().add(CityWeatherEvent.load(city));
     context.router.push(const CityWeatherScreenRoute());
   }
 }

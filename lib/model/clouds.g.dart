@@ -6,10 +6,10 @@ part of 'clouds.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Clouds _$CloudsFromJson(Map<String, dynamic> json) => Clouds(
+_$_Clouds _$$_CloudsFromJson(Map<String, dynamic> json) => _$_Clouds(
       all: json['all'] as int?,
     );
 
-Map<String, dynamic> _$CloudsToJson(Clouds instance) => <String, dynamic>{
+Map<String, dynamic> _$$_CloudsToJson(_$_Clouds instance) => <String, dynamic>{
       'all': instance.all,
     };

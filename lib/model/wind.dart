@@ -1,16 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'wind.freezed.dart';
 part 'wind.g.dart';
 
-@JsonSerializable()
-class Wind {
-  final double? speed;
-  final int? deg;
-  final double? gust;
+@freezed
+class Wind with _$Wind {
+  const factory Wind({
+    final double? speed,
+    final int? deg,
+    final double? gust,
+  }) = _Wind;
 
-  Wind({this.speed, this.deg, this.gust});
-
-  factory Wind.fromJson(Map<String, dynamic> json) =>
-      _$WindFromJson(json);
-  Map<String, dynamic> toJson() => _$WindToJson(this);
+  factory Wind.fromJson(Map<String, dynamic> json) => _$WindFromJson(json);
 }

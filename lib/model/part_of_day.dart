@@ -1,14 +1,14 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'part_of_day.freezed.dart';
 part 'part_of_day.g.dart';
 
-@JsonSerializable()
-class PartOfDay {
-  final String? pod;
-
-  PartOfDay({this.pod});
+@freezed
+class PartOfDay with _$PartOfDay {
+  const factory PartOfDay({
+    final String? pod,
+  }) = _PartOfDay;
 
   factory PartOfDay.fromJson(Map<String, dynamic> json) =>
       _$PartOfDayFromJson(json);
-  Map<String, dynamic> toJson() => _$PartOfDayToJson(this);
 }
