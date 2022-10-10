@@ -51,7 +51,6 @@ class CityWeatherScreen extends StatelessWidget {
           if (state is CityWeatherLoadedState) {
             var a = state.cityWeatherModel.list!.first.toJson();
             var b = WeatherByDay.fromJson(a);
-            print(b);
             return WeatherInfoCard(
                 weatherByDay: state.cityWeatherModel.list!.first);
           } else if (state is CityWeatherErrorState) {
