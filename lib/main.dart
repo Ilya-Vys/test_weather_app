@@ -7,7 +7,7 @@ import 'package:weather_app/router/router.gr.dart';
 void main() {
   setupLocator();
 
-  ///For Dependency injections
+  //For Dependency injections
   runApp(WeatherApp());
 }
 
